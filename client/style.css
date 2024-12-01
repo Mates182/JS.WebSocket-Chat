@@ -58,4 +58,22 @@ body {
 
 #form>button:hover {
     background: rgb(174, 0, 255);
-  }
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    height: 100%;
+    scroll-behavior: smooth;
+    padding-bottom: 48px;
+}
+
+#messages>li {
+    padding: .5rem 1rem;
+}
+
+#messages>li:nth-child(odd) {
+    background: #000;
+}
