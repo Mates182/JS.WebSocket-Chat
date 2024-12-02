@@ -10,15 +10,15 @@ const app = express()
 const server = createServer(app)
 const io = new Server(server)
 
-io.on('connection', (socket) =>{
+io.on('connection', async (socket) =>{
     console.log('a user has connected!')
 
     socket.on('disconnect', () =>{
         console.log('an user has disconnected')
     })
 
-    socket.on('chat message', (msg) =>{
-        io.emit('chat message', msg)
+    socket.on('chat message', async (msg) =>{
+        io.emit('chat message', msg, socket.handshake.auth.username)
     })
 })
 
