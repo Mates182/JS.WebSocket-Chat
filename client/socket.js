@@ -24,12 +24,25 @@ const form = document.getElementById('form')
 const input = document.getElementById('input')
 const messages = document.getElementById('messages')
 
-socket.on('chat message', (msg, username) =>{
-  if (socket.auth.username == username){
-    console.log(username)
+//Color generator by hashing username
+function stringToColor(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const item = `<li>
-  <small>${username}:</small>
+
+  let color = '#';
+  for (let i = 0; i < 3; i++) {
+      const value = ((hash >> (i * 8)) & 0xFF) % 128 + 128;
+      color += ('00' + value.toString(16)).slice(-2);
+  }
+
+  return color;
+}
+
+socket.on('chat message', (msg, username) =>{
+  const item = `<li ${socket.auth.username == username?'class="own-message"':'class="recived-message"'}>
+  <small style="color: ${stringToColor(username)};">${username}:</small>
   <p>${msg}</p> 
   </li>`
   messages.insertAdjacentHTML('beforeend', item)

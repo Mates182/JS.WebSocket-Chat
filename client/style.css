@@ -15,6 +15,7 @@ body {
     height: 100vh;
     padding: 36px 36px 100px 36px;
     grid-template-rows: 1fr;
+    background-color: #1c1b22;;
 }
 
 #chat {
@@ -74,6 +75,11 @@ body {
     padding: .5rem 1rem;
 }
 
-#messages>li:nth-child(odd) {
-    background: #000;
+
+.own-message{
+    text-align: right;
+}
+
+.recived-message{
+    background: #15141a;
 }
